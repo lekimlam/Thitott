@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xem ảnh HD</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background: black;
+    color: #0f0;
+    font-family: monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#startBtn {
+    padding: 20px 35px;
+    font-size: 20px;
+    border-radius: 12px;
+    border: none;
+    background: #00ff88;
+    color: black;
+    cursor: pointer;
+}
+#hack {
+    display: none;
+    animation: blink 0.8s infinite;
+}
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+</style>
+</head>
+<body>
+
+<button id="startBtn" onclick="goFull()">🔍 Nhấn để xem full màn hình</button>
+
+<div id="hack">
+    <h1>⚠ SYSTEM BREACH ⚠</h1>
+    <p>Thiết bị đang bị xâm nhập...</p>
+    <p id="count">Đang quét dữ liệu: 0%</p>
+</div>
+
+<script>
+let i = 0;
+
+function goFull() {
+    const el = document.documentElement;
+    el.requestFullscreen?.() || el.webkitRequestFullscreen?.();
+
+    setTimeout(runHack, 300);
+}
+
+function runHack() {
+    document.getElementById("startBtn").style.display = "none";
+    document.getElementById("hack").style.display = "block";
+
+    if (navigator.vibrate) {
+        navigator.vibrate([200,100,200,100,400]);
+    }
+
+    setInterval(() => {
+        if (i < 100) {
+            i += Math.floor(Math.random() * 6);
+            if (i > 100) i = 100;
+            document.getElementById("count").innerText =
+              "Đang quét dữ liệu: " + i + "%";
+        } else {
+            document.getElementById("count").innerText =
+              "ĐÃ TRUY CẬP TOÀN BỘ DỮ LIỆU!";
+        }
+    }, 200);
+}
+</script>
+
+</body>
+</html>
