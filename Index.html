@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xem full màn hình</title>
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial;
+    text-align: center;
+}
+#btn {
+    padding: 20px 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background: red;
+    color: white;
+}
+</style>
+</head>
+<body>
+
+<button id="btn" onclick="goFull()">🔍 Ấn để xem toàn màn hình</button>
+
+<script>
+function goFull() {
+    const el = document.documentElement;
+
+    if (el.requestFullscreen) {
+        el.requestFullscreen();
+    } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+    }
+
+    setTimeout(runTroll, 300); // Đảm bảo fullscreen xong mới chạy
+}
+
+function runTroll() {
+    document.body.innerHTML = `
+        <h1>⚠ SYSTEM BREACH ⚠</h1>
+        <p>Thiết bị đang bị xâm nhập...</p>
+    `;
+
+    if (navigator.vibrate) {
+        navigator.vibrate([200,100,200,100,500]);
+    }
+
+    let i = 0;
+    setInterval(() => {
+        i += Math.floor(Math.random()*7);
+        if (i > 100) i = 100;
+        document.body.innerHTML = `
+            <h1>⚠ SYSTEM BREACH ⚠</h1>
+            <p>Đang truy cập dữ liệu: ${i}%</p>
+        `;
+    }, 200);
+}
+</script>
+
+</body>
+</html>
